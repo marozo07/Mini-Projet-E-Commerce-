@@ -92,7 +92,26 @@ INSERT INTO `product_images` (`id`, `product_id`, `image_url`, `is_primary`, `so
 (2, 2, '/images/products/HP.jpg', 1, 0),
 (3, 3, '/images/products/casque.jpg', 1, 0),
 (4, 4, '/images/products/montre.jpg', 1, 0),
-(5, 5, '/images/products/ipad.jpg', 1, 0);
+(5, 5, '/images/products/ipad.jpg', 1, 0),
+(6, 6, '/images/products/JBL.jpg', 1, 0),
+(7, 7, '/images/products/keyboard.jpg', 1, 0),
+(8, 8, '/images/products/souris.jpg', 1, 0),
+(9, 9, '/images/products/SanDisk.jpg', 1, 0),
+(10, 10, '/images/products/Dell.jpg', 1, 0),
+(11, 11, '/images/products/Imprimante.jpg', 1, 0),
+(12, 12, '/images/products/Tp-link.jpg', 1, 0)
+(13, 13, '/images/products/camweb.jpg', 1, 0),
+(14, 14, '/images/products/yetti.jpg', 1, 0),
+(15, 15, '/images/products/Meta-Quest.jpg', 1, 0),
+(16, 16, '/images/products/tab.jpg', 1, 0),
+(17, 17, '/images/products/sonos.jpg', 1, 0),
+(18, 18, '/images/products/USB.jpg', 1, 0),
+(19, 19, '/images/products/Support.jpg', 1, 0),
+(20, 20, '/images/products/Batterie-Externe.jpg', 1, 0),
+(21, 21, '/images/products/bose.jpg', 1, 0),
+(22, 22, '/images/products/logi.jpg', 1, 0),
+(23, 23, '/images/products/clavier.jpg', 1, 0),
+(24, 24, '/images/products/casque-gaming.jpg', 1, 0);
 
 --
 -- Déchargement des données de la table `products`
