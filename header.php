@@ -10,7 +10,7 @@
     <header>
         <div class="header-container">
             <div class="logo">
-                <a href="index.php">Bela Store </a>
+                <a href="index.php">BelaElectro </a>
 
             </div>
             <nav>
