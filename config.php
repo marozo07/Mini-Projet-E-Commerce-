@@ -4,7 +4,7 @@ session_start();
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'ecommerce_db');
 define('DB_USER', 'root');
-define('DB_PASS', '1205');
+define('DB_PASS', '');
 
 // Connexion la base de donnes avec PDO
 try {
