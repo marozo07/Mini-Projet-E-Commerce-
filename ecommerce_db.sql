@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 17 fév. 2026 à 18:12
+-- Généré le : jeu. 19 fév. 2026 à 01:15
 -- Version du serveur : 8.2.0
 -- Version de PHP : 8.2.13
 
@@ -69,6 +69,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `name` varchar(255) NOT NULL,
   `price` decimal(10,2) NOT NULL,
   `description` text,
+  `image_path` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -104,6 +105,7 @@ INSERT INTO `product_images` (`id`, `product_id`, `image_url`, `is_primary`, `so
 --
 -- Déchargement des données de la table `products`
 --
+
 INSERT INTO `products` (`id`, `name`, `price`, `description`) VALUES
 (1, 'Smartphone Samsung Galaxy', 599.99, 'Écran 6.5\", 128GB, Quad camera'),
 (2, 'Laptop HP Pavilion', 799.99, '15.6\", i5, 8GB RAM, 512GB SSD'),

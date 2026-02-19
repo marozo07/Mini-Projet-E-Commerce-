@@ -1,14 +1,12 @@
 <?php
-// Démarrer la session
 session_start();
-
 // Configuration de la base de données
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'ecommerce_db');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 
-// Connexion PDO
+// Connexion la base de donnes avec PDO
 try {
     $pdo = new PDO(
         "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8",
@@ -19,17 +17,16 @@ try {
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ]
     );
+    // Vérification de la connexion
 } catch(PDOException $e) {
     error_log("Erreur de connexion : " . $e->getMessage());
     die("Une erreur est survenue. Veuillez réessayer plus tard.");
 }
-
-// Fonction pour récupérer tous les produits
+// Fonctions pour gérer les produits
 function get_all_products($pdo) {
     $stmt = $pdo->query("SELECT * FROM products ORDER BY id");
     return $stmt->fetchAll();
 }
-
 // Fonction pour récupérer un produit par son ID
 function get_product($pdo, $id) {
     $stmt = $pdo->prepare("SELECT * FROM products WHERE id = ?");
