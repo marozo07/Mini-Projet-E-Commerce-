@@ -1,6 +1,6 @@
 <?php
 require_once 'config.php';
- $products = get_all_products($pdo); 
+$products = get_all_products($pdo);
 include 'header.php'; ?>
 
 
@@ -9,14 +9,14 @@ include 'header.php'; ?>
     <h1 class="page-title">Nos Produits</h1>
 
     <div class="products-grid">
-        <?php foreach($products as $product): ?>
+        <?php foreach ($products as $product): ?>
             <div class="product-card">
 
                 <div class="product-image">
-                    <?php if(!empty($product['image_path'])): ?>
-                        <img src="<?= htmlspecialchars($product['image_path']) ?>" 
-                             alt="<?= htmlspecialchars($product['name']) ?>"
-                             onerror="this.src='images/placeholder.jpg'">
+                    <?php if (!empty($product['image_path'])): ?>
+                        <img src="<?= htmlspecialchars($product['image_path']) ?>"
+                            alt="<?= htmlspecialchars($product['name']) ?>"
+                            onerror="this.src='images/placeholder.jpg'">
                     <?php else: ?>
                         <img src="images/placeholder.jpg" alt="Image non disponible">
                     <?php endif; ?>

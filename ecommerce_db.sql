@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `products` (
 ) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Structure de la table images pour les produits
-
+DROP TABLE IF EXISTS `product_images`;
 CREATE TABLE IF NOT EXISTS `product_images` (
   `id` int NOT NULL AUTO_INCREMENT,
   `product_id` int NOT NULL,
@@ -92,15 +92,7 @@ INSERT INTO `product_images` (`id`, `product_id`, `image_url`, `is_primary`, `so
 (2, 2, '/images/products/HP.jpg', 1, 0),
 (3, 3, '/images/products/casque.jpg', 1, 0),
 (4, 4, '/images/products/montre.jpg', 1, 0),
-(5, 5, '/images/products/ipad.jpg', 1, 0),
-(6, 6, '/images/products/ipad.jpg', 1, 0),
-(7, 7, '/images/products/ipad.jpg', 1, 0),
-(8, 8, '/images/products/ipad.jpg', 1, 0),
-(9, 9, '/images/products/ipad.jpg', 1, 0),
-(10, 10, '/images/products/ipad.jpg', 1, 0),
-(11, 11, '/images/products/ipad.jpg', 1, 0),
-(12, 12, '/images/products/ipad.jpg', 1, 0);
-
+(5, 5, '/images/products/ipad.jpg', 1, 0);
 
 --
 -- Déchargement des données de la table `products`
@@ -119,18 +111,18 @@ INSERT INTO `products` (`id`, `name`, `price`, `description`) VALUES
 (10, 'Écran 24\" Dell', 199.99, 'Full HD, IPS, HDMI'),
 (11, 'Imprimante HP LaserJet', 249.99, 'Noir et blanc, WiFi'),
 (12, 'Routeur WiFi 6 TP-Link', 129.99, 'Dual band, gigabit'),
-(13, 'Smartphone Samsung Galaxy', 599.99, 'Écran 6.5\", 128GB, Quad camera'),
-(14, 'Laptop HP Pavilion', 799.99, '15.6\", i5, 8GB RAM, 512GB SSD'),
-(15, 'Casque Audio Sony', 129.99, 'Bluetooth, réduction de bruit'),
-(16, 'Montre Connectée Apple Watch', 399.99, 'GPS, cardio, écran retina'),
-(17, 'Tablette iPad Air', 649.99, '10.9\", 64GB, WiFi'),
-(18, 'Enceinte JBL Charge 5', 149.99, 'Bluetooth, 20h autonomie'),
-(19, 'Clavier Mécanique Logitech', 89.99, 'RGB, switches tactiles'),
-(20, 'Souris Gaming Razer', 59.99, '16000 DPI, RGB'),
-(21, 'Disque Dur Externe 1To', 69.99, 'USB 3.0, portable'),
-(22, 'Écran 24\" Dell', 199.99, 'Full HD, IPS, HDMI'),
-(23, 'Imprimante HP LaserJet', 249.99, 'Noir et blanc, WiFi'),
-(24, 'Routeur WiFi 6 TP-Link', 129.99, 'Dual band, gigabit');
+(13, 'Webcam Logitech C920', 89.99, 'Full HD, autofocus'),
+(14, 'Microphone Blue Yeti', 129.99, 'USB, multi-pattern'),
+(15, 'Casque de Réalité Virtuelle Oculus Quest 2', 299.99, 'Standalone, 6GB RAM'),
+(16, 'Tablette Graphique Wacom Intuos', 199.99, '8192 niveaux de pression'),
+(17, 'Enceinte Sonos One', 199.99, 'WiFi, assistant vocal intégré'),
+(18, 'Clé USB 128GB SanDisk', 29.99, 'USB 3.0, haute vitesse'),
+(19, 'Support de Téléphone pour Voiture', 19.99, 'Rotation à 360°, fixation ventouse'),
+(20, 'Batterie Externe Anker PowerCore', 49.99, '10000mAh, USB-C')
+(21, 'Haut-parleur Bluetooth Bose SoundLink', 179.99, 'Bluetooth, 12h autonomie'),
+(22, 'Souris Sans Fil Logitech MX Master 3', 99.99, 'Bluetooth, rechargeable'),
+(23, 'Clavier Sans Fil Microsoft Surface', 129.99, 'Bluetooth, rétroéclairé'),
+(24, 'Casque de Jeu HyperX Cloud II', 149.99, 'USB, son surround 7.1');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -20,8 +20,8 @@ include 'header.php';
         <div class="product-detail-image">
             <?php if(!empty($product['image_path'])): ?>
                 <img src="<?= htmlspecialchars($product['image_path']) ?>" 
-                     alt="<?= htmlspecialchars($product['name']) ?>"
-                     onerror="this.src='images/placeholder.jpg'">
+                    alt="<?= htmlspecialchars($product['name']) ?>"
+                    onerror="this.src='images/placeholder.jpg'">
             <?php else: ?>
                 <img src="images/placeholder.jpg" alt="Image non disponible">
             <?php endif; ?>
