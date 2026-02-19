@@ -72,10 +72,38 @@ CREATE TABLE IF NOT EXISTS `products` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- Structure de la table images pour les produits
+
+CREATE TABLE IF NOT EXISTS `product_images` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `product_id` int NOT NULL,
+  `image_url` varchar(500) NOT NULL,
+  `is_primary` tinyint(1) DEFAULT '0',
+  `sort_order` int DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `product_id` (`product_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Déchargement des données de la table `product_images`
+INSERT INTO `product_images` (`id`, `product_id`, `image_url`, `is_primary`, `sort_order`) VALUES
+(1, 1, '/images/products/device.jpg', 1, 0),
+(2, 2, '/images/products/HP.jpg', 1, 0),
+(3, 3, '/images/products/casque.jpg', 1, 0),
+(4, 4, '/images/products/montre.jpg', 1, 0),
+(5, 5, '/images/products/ipad.jpg', 1, 0),
+(6, 6, '/images/products/ipad.jpg', 1, 0),
+(7, 7, '/images/products/ipad.jpg', 1, 0),
+(8, 8, '/images/products/ipad.jpg', 1, 0),
+(9, 9, '/images/products/ipad.jpg', 1, 0),
+(10, 10, '/images/products/ipad.jpg', 1, 0),
+(11, 11, '/images/products/ipad.jpg', 1, 0),
+(12, 12, '/images/products/ipad.jpg', 1, 0);
+
+
 --
 -- Déchargement des données de la table `products`
 --
-
 INSERT INTO `products` (`id`, `name`, `price`, `description`) VALUES
 (1, 'Smartphone Samsung Galaxy', 599.99, 'Écran 6.5\", 128GB, Quad camera'),
 (2, 'Laptop HP Pavilion', 799.99, '15.6\", i5, 8GB RAM, 512GB SSD'),
