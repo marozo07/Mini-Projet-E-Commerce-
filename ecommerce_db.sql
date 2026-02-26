@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 19 fév. 2026 à 01:15
+-- Généré le : jeu. 26 fév. 2026 à 15:01
 -- Version du serveur : 8.2.0
 -- Version de PHP : 8.2.13
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `total_price` decimal(10,2) NOT NULL,
   `order_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -54,8 +54,9 @@ CREATE TABLE IF NOT EXISTS `order_items` (
   `unit_price` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `order_id` (`order_id`),
-  KEY `product_id` (`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `product_id` (`product_id`),
+  CONSTRAINT `fk_order_items_order` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -73,7 +74,30 @@ CREATE TABLE IF NOT EXISTS `products` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Structure de la table images pour les produits
+--
+-- Déchargement des données de la table `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `price`, `description`, `image_path`) VALUES
+(1, 'Smartphone Samsung Galaxy', 599.99, 'Écran 6.5\", 128GB, Quad camera', '\"/images/products/device.jpg\"'),
+(2, 'Laptop HP Pavilion', 799.99, '15.6\", i5, 8GB RAM, 512GB SSD', '/images/products/device.jpg'),
+(3, 'Casque Audio Sony', 129.99, 'Bluetooth, réduction de bruit', NULL),
+(4, 'Montre Connectée Apple Watch', 399.99, 'GPS, cardio, écran retina', NULL),
+(5, 'Tablette iPad Air', 649.99, '10.9\", 64GB, WiFi', NULL),
+(6, 'Enceinte JBL Charge 5', 149.99, 'Bluetooth, 20h autonomie', NULL),
+(7, 'Clavier Mecanique Logitech', 89.99, 'RGB, switches tactiles', NULL),
+(8, 'Souris Gaming Razer', 59.99, '16000 DPI, RGB', NULL),
+(9, 'Disque Dur Externe 1To', 69.99, 'USB 3.0, portable', NULL),
+(10, 'Écran 24\" Dell', 199.99, 'Full HD, IPS, HDMI', NULL),
+(11, 'Imprimante HP LaserJet', 249.99, 'Noir et blanc, WiFi', NULL),
+(12, 'Routeur WiFi 6 TP-Link', 129.99, 'Dual band, gigabit', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `product_images`
+--
+
 DROP TABLE IF EXISTS `product_images`;
 CREATE TABLE IF NOT EXISTS `product_images` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -84,64 +108,49 @@ CREATE TABLE IF NOT EXISTS `product_images` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
 -- Déchargement des données de la table `product_images`
-INSERT INTO `product_images` (`id`, `product_id`, `image_url`, `is_primary`, `sort_order`) VALUES
-(1, 1, '/images/products/device.jpg', 1, 0),
-(2, 2, '/images/products/HP.jpg', 1, 0),
-(3, 3, '/images/products/casque.jpg', 1, 0),
-(4, 4, '/images/products/montre.jpg', 1, 0),
-(5, 5, '/images/products/ipad.jpg', 1, 0),
-(6, 6, '/images/products/JBL.jpg', 1, 0),
-(7, 7, '/images/products/keyboard.jpg', 1, 0),
-(8, 8, '/images/products/souris.jpg', 1, 0),
-(9, 9, '/images/products/SanDisk.jpg', 1, 0),
-(10, 10, '/images/products/Dell.jpg', 1, 0),
-(11, 11, '/images/products/Imprimante.jpg', 1, 0),
-(12, 12, '/images/products/Tp-link.jpg', 1, 0)
-(13, 13, '/images/products/camweb.jpg', 1, 0),
-(14, 14, '/images/products/yetti.jpg', 1, 0),
-(15, 15, '/images/products/Meta-Quest.jpg', 1, 0),
-(16, 16, '/images/products/tab.jpg', 1, 0),
-(17, 17, '/images/products/sonos.jpg', 1, 0),
-(18, 18, '/images/products/USB.jpg', 1, 0),
-(19, 19, '/images/products/Support.jpg', 1, 0),
-(20, 20, '/images/products/Batterie-Externe.jpg', 1, 0),
-(21, 21, '/images/products/bose.jpg', 1, 0),
-(22, 22, '/images/products/logi.jpg', 1, 0),
-(23, 23, '/images/products/clavier.jpg', 1, 0),
-(24, 24, '/images/products/casque-gaming.jpg', 1, 0);
-
---
--- Déchargement des données de la table `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `price`, `description`) VALUES
-(1, 'Smartphone Samsung Galaxy', 599.99, 'Écran 6.5\", 128GB, Quad camera'),
-(2, 'Laptop HP Pavilion', 799.99, '15.6\", i5, 8GB RAM, 512GB SSD'),
-(3, 'Casque Audio Sony', 129.99, 'Bluetooth, réduction de bruit'),
-(4, 'Montre Connectée Apple Watch', 399.99, 'GPS, cardio, écran retina'),
-(5, 'Tablette iPad Air', 649.99, '10.9\", 64GB, WiFi'),
-(6, 'Enceinte JBL Charge 5', 149.99, 'Bluetooth, 20h autonomie'),
-(7, 'Clavier Mécanique Logitech', 89.99, 'RGB, switches tactiles'),
-(8, 'Souris Gaming Razer', 59.99, '16000 DPI, RGB'),
-(9, 'Disque Dur Externe 1To', 69.99, 'USB 3.0, portable'),
-(10, 'Écran 24\" Dell', 199.99, 'Full HD, IPS, HDMI'),
-(11, 'Imprimante HP LaserJet', 249.99, 'Noir et blanc, WiFi'),
-(12, 'Routeur WiFi 6 TP-Link', 129.99, 'Dual band, gigabit'),
-(13, 'Webcam Logitech C920', 89.99, 'Full HD, autofocus'),
-(14, 'Microphone Blue Yeti', 129.99, 'USB, multi-pattern'),
-(15, 'Casque de Réalité Virtuelle Oculus Quest 2', 299.99, 'Standalone, 6GB RAM'),
-(16, 'Tablette Graphique Wacom Intuos', 199.99, '8192 niveaux de pression'),
-(17, 'Enceinte Sonos One', 199.99, 'WiFi, assistant vocal intégré'),
-(18, 'Clé USB 128GB SanDisk', 29.99, 'USB 3.0, haute vitesse'),
-(19, 'Support de Téléphone pour Voiture', 19.99, 'Rotation à 360°, fixation ventouse'),
-(20, 'Batterie Externe Anker PowerCore', 49.99, '10000mAh, USB-C')
-(21, 'Haut-parleur Bluetooth Bose SoundLink', 179.99, 'Bluetooth, 12h autonomie'),
-(22, 'Souris Sans Fil Logitech MX Master 3', 99.99, 'Bluetooth, rechargeable'),
-(23, 'Clavier Sans Fil Microsoft Surface', 129.99, 'Bluetooth, rétroéclairé'),
-(24, 'Casque de Jeu HyperX Cloud II', 149.99, 'USB, son surround 7.1');
+INSERT INTO `product_images` (`id`, `product_id`, `image_url`, `is_primary`, `sort_order`, `created_at`) VALUES
+(1, 1, '/images/products/device.jpg', 1, 0, '2026-02-25 22:11:37'),
+(2, 2, '/images/products/HP.jpg', 1, 0, '2026-02-25 22:11:37'),
+(3, 3, '/images/products/casque.jpg', 1, 0, '2026-02-25 22:11:37'),
+(4, 4, '/images/products/montre.jpg', 1, 0, '2026-02-25 22:11:37'),
+(5, 5, '/images/products/ipad.jpg', 1, 0, '2026-02-25 22:11:37'),
+(6, 6, '/images/products/JBL.jpg', 1, 0, '2026-02-25 22:11:37'),
+(7, 7, '/images/products/keyboard.jpg', 1, 0, '2026-02-25 22:11:37'),
+(8, 8, '/images/products/souris.jpg', 1, 0, '2026-02-25 22:11:37'),
+(9, 9, '/images/products/SanDisk.jpg', 1, 0, '2026-02-25 22:11:37'),
+(10, 10, '/images/products/Dell.jpg', 1, 0, '2026-02-25 22:11:37'),
+(11, 11, '/images/products/Imprimante.jpg', 1, 0, '2026-02-25 22:11:37'),
+(12, 12, '/images/products/Tp-link.jpg', 1, 0, '2026-02-25 22:11:37');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`) VALUES
+(1, 'marozo pierre', 'valenspierre509@gmail.com', '$2y$10$GRCuy.QfO/ao2SS7Fgqaqeviira/SDs/kmUWS5eRri0aXMnQF2W1i', '2026-02-26 14:48:15');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

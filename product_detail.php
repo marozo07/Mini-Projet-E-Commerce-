@@ -51,12 +51,12 @@ include 'header.php';
                 </div>
 
                 <button type="submit" class="btn-primary large-btn">
-                    Ajouter au panier
+                    <i class="fa-solid fa-cart-plus"></i> Ajouter au panier
                 </button>
             </form>
 
             <a href="index.php" class="btn-outline back-btn">
-                ← Retour aux produits
+                <i class="fa-solid fa-arrow-left"></i> Retour aux produits
             </a>
 
         </div>
